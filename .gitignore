@@ -1,0 +1,19 @@
+# Ignore virtual environment
+venv/
+env/
+
+# Ignore compiled Python files
+__pycache__/
+*.py[cod]
+
+# Ignore config file (if it contains sensitive data like API keys or credentials)
+config.py
+
+# Ignore system-specific files
+*.DS_Store
+*.log
+*.sqlite3
+
+# Ignore all migrations files (if needed)
+*/migrations/*.py
+*/migrations/*.pyc

@@ -1,0 +1,39 @@
+{% extends '../base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h2 class="card-title mb-4">Update Profile</h2>
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="id_first_name" class="form-label">First Name</label>
+              {{ form.first_name }}
+              <div class="text-danger">{{ form.first_name.errors }}</div>
+            </div>
+            <div class="mb-3">
+              <label for="id_last_name" class="form-label">Last Name</label>
+              {{ form.last_name }}
+              <div class="text-danger">{{ form.last_name.errors }}</div>
+            </div>
+            <div class="mb-3">
+              <label for="id_bio" class="form-label">Bio</label>
+              {{ form.bio }}
+              <div class="text-danger">{{ form.bio.errors }}</div>
+            </div>
+            <div class="mb-3">
+              <label for="id_profile_picture" class="form-label">Profile Picture</label>
+              {{ form.profile_picture }}
+              <div class="text-danger">{{ form.profile_picture.errors }}</div>
+            </div>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

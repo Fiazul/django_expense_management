@@ -1,0 +1,26 @@
+{% extends '../base.html' %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center py-5">
+        <div class="col-md-8 text-center">
+            <div class="card shadow-sm rounded">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Welcome, {{ request.user.username }}!</h4>
+                    {% if user_profile.profile_picture %}
+                        <img src="{{ user_profile.profile_picture.url }}" alt="Profile Picture" class="img-thumbnail mb-3" width="150" height="150">
+                    {% else %}
+                        <img src="path/to/default/profile/picture.jpg" alt="Default Profile Picture" class="img-thumbnail mb-3" width="150" height="150">
+                    {% endif %}
+                    <div class="d-grid gap-3">
+                        <a href="{% url 'change_password' %}" class="btn btn-outline-primary">Change Password</a>
+                        <a href="{% url 'logout' %}" class="btn btn-outline-danger">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
