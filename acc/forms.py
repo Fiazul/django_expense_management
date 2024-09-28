@@ -1,9 +1,7 @@
 import threading
-
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import PasswordResetForm
-
 
 User = get_user_model()
 
@@ -11,39 +9,24 @@ User = get_user_model()
 class LoginForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
         for field in self.fields:
             self.fields[field].widget.attrs.update({"class": "form-control"})
 
-    username = forms.CharField(
-        max_length=150
-    )
-    password = forms.CharField(
-        max_length=150,
-        widget=forms.PasswordInput
-    )
+    username = forms.CharField(max_length=150)
+    password = forms.CharField(max_length=150, widget=forms.PasswordInput)
 
 
 class UserRegistrationForm(forms.ModelForm):
-
-    password = forms.CharField(
-        max_length=150,
-        widget=forms.PasswordInput
-    )
+    password = forms.CharField(max_length=150, widget=forms.PasswordInput)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
         for field in self.fields:
             self.fields[field].widget.attrs.update({"class": "form-control"})
 
     class Meta:
         model = User
-        fields = (
-            "username",
-            "email",
-            "password"
-        )
+        fields = ("username", "email", "password")
 
     def clean_username(self):
         username = self.cleaned_data.get('username')
@@ -85,22 +68,13 @@ class UserRegistrationForm(forms.ModelForm):
 
 class ChangePasswordForm(forms.Form):
     current_password = forms.CharField(
-        max_length=150,
-        widget=forms.PasswordInput
-    )
-    new_password1 = forms.CharField(
-        max_length=150,
-        widget=forms.PasswordInput
-    )
-    new_password2 = forms.CharField(
-        max_length=150,
-        widget=forms.PasswordInput
-    )
+        max_length=150, widget=forms.PasswordInput)
+    new_password1 = forms.CharField(max_length=150, widget=forms.PasswordInput)
+    new_password2 = forms.CharField(max_length=150, widget=forms.PasswordInput)
 
     def __init__(self, user, *args, **kwargs):
         self.user = user
         super().__init__(*args, **kwargs)
-
         for field in self.fields:
             self.fields[field].widget.attrs.update({"class": "form-control"})
 
@@ -126,7 +100,6 @@ class SendEmailForm(PasswordResetForm, threading.Thread):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         threading.Thread.__init__(self)
-
         for field in self.fields:
             self.fields[field].widget.attrs.update({"class": "form-control"})
 
@@ -153,24 +126,16 @@ class SendEmailForm(PasswordResetForm, threading.Thread):
         self.from_email = from_email
         self.to_email = to_email
         self.html_email_template_name = html_email_template_name
-
         self.start()
 
 
 class ResetPasswordConfirmForm(forms.Form):
-    new_password1 = forms.CharField(
-        max_length=150,
-        widget=forms.PasswordInput
-    )
-    new_password2 = forms.CharField(
-        max_length=150,
-        widget=forms.PasswordInput
-    )
+    new_password1 = forms.CharField(max_length=150, widget=forms.PasswordInput)
+    new_password2 = forms.CharField(max_length=150, widget=forms.PasswordInput)
 
     def __init__(self, user, *args, **kwargs):
         self.user = user
         super().__init__(*args, **kwargs)
-
         for field in self.fields:
             self.fields[field].widget.attrs.update({"class": "form-control"})
 

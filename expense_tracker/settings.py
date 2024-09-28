@@ -28,6 +28,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'expense_tracker.middleware.DisableCSRFCheckForAPI',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -118,7 +119,8 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = yamette_kudasai.get('email')
 EMAIL_HOST_PASSWORD = yamette_kudasai.get('app_pass')
-
+FRONTEND_URL = 'http://127.0.0.1:8000'
+DEFAULT_FROM_EMAIL = yamette_kudasai.get('email')
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
